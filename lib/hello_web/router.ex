@@ -19,8 +19,12 @@ defmodule HelloWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
-    resources "/users", UserController
-    resources "/posts", PostController, except: [:delete]
+    # resources "/users", UserController
+    # resources "/posts", PostController, except: [:delete]
+  end
+
+  scope "/" do
+    forward "/jobs", BackgroundJob.Plug, name: "Hello Phoenix"
   end
 
   # Other scopes may use custom stacks.
