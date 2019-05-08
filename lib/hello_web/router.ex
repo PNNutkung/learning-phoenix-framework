@@ -19,8 +19,9 @@ defmodule HelloWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
-    # resources "/users", UserController
-    # resources "/posts", PostController, except: [:delete]
+    resources "/users", UserController do
+      resources "/posts", PostController, except: [:delete]
+    end
   end
 
   scope "/" do
